@@ -19,7 +19,8 @@ import java.io.*;
 public class HangmanFX extends Application {
     // We keep track of the count, and label displaying the count:
     private TextField input;
-    private Label output = new Label("");
+    private Label output = new Label("Enter any English word");
+    private int targetWordLength;
         
     public void start(Stage stage) throws Exception
     {
@@ -42,7 +43,7 @@ public class HangmanFX extends Application {
         // Add the button and label into the pane
         pane.add(input, 0, 0);
         pane.add(myButton, 0, 1);
-        pane.add(output, 0, 3);
+        pane.add(output, 1, 0);
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         Scene scene = new Scene(pane, 300,100);
@@ -53,7 +54,8 @@ public class HangmanFX extends Application {
         stage.show();
     }
 
-    private void main(ActionEvent event)
-    {
+    private void main(ActionEvent event){
+    	Game hangmanGame = new Game();
+    	hangmanGame.main(input.getText());
     }
 }
