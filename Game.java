@@ -10,12 +10,14 @@ public class Game{
 
 		List<String> words = new ArrayList<String>();
 		List<String> disallowedChars = new ArrayList<String>();
-		Game game = new Game();
+		List<String> alphabet = new ArrayList<String>();
+		Reader reader = new Reader();
 		Guesser guesser = new Guesser();
 
-		words = game.Reader("C:\\Users\\etone\\Desktop\\javaProjects\\hangman\\res\\words.txt");
-		disallowedChars = game.Reader("C:\\Users\\etone\\Desktop\\javaProjects\\hangman\\res\\disallowedChars.txt");
-		//System.out.println(words);
+		words = reader.main("C:\\Users\\etone\\Desktop\\javaProjects\\hangman\\res\\words.txt");
+		disallowedChars = reader.main("C:\\Users\\etone\\Desktop\\javaProjects\\hangman\\res\\disallowedChars.txt");
+		alphabet = reader.main("C:\\Users\\etone\\Desktop\\javaProjects\\hangman\\res\\alphabet.txt");
+		System.out.println(words);
 		//System.out.println(disallowedChars);
 
 		this.targetWord = word;
@@ -23,29 +25,7 @@ public class Game{
 		System.out.println(targetWord);
 		System.out.println(targetWordLength);
 
-		guesser.MakeGuessAlphabetical(targetWord, targetWordLength);
+		guesser.MakeGuessByFile(targetWord, targetWordLength, alphabet);
 
 	}
-	//Read a text file and store the content in an array
-	public List<String> Reader(String url){
-		List<String> words = new ArrayList<String>();
-		try{
-
-			File file = new File(url);
-			Scanner fileScanner = new Scanner(file);
-
-			while(fileScanner.hasNext()){
-				words.add(fileScanner.next().toLowerCase());
-			}
-
-			fileScanner.close();
-
-		} catch(Exception e){
-
-		}
-
-		return words;
-
-	}
-	
 }
