@@ -3,24 +3,31 @@ import java.io.*;
 
 public class Guesser{
 
-	public static void MakeGuessByFile(String targetWord, int targetWordLength, List<String> file){
+	static List<String> passingWords = new ArrayList<String>();
 
-		List<String> alphabet = new ArrayList<String>();
-		Reader reader = new Reader();
-
-		System.out.println("Guess being made");
-		System.out.println(file);
-
-		alphabet = reader.main("C:\\Users\\etone\\Desktop\\javaProjects\\hangman\\res\\alphabet.txt");
+	public static void MostCommonLetterGuess(String targetWord, List<String> wordList){
 		
-		for (Iterator<String> i = wordList.interator(); i.hasNext();){
-			String word = i.next();
-
-		}
 	}
 
-	public static void MatchLength(int length){
-		
+	public static List<String> CleanUp(List<String> wordList, List<String> badCharsList){
+		for (String word : wordList){
+			for (String badChar : badCharsList){
+				if (word.indexOf(badChar) < 0){
+					passingWords.add(word);
+				}
+			}
+		} 
+		return passingWords;
+	}
+
+	//Remove all words from words.txt array that aren't the same length as the target word
+	public static List<String> FilterLength(List<String> wordList, int targetWordLength){
+		for (String word : wordList){
+			if (word.length() == targetWordLength){
+				passingWords.add(word);
+			}
+		}
+		return passingWords;
 	}
 }
 
