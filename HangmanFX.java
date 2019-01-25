@@ -19,16 +19,18 @@ import java.io.*;
 public class HangmanFX extends Application {
     // We keep track of the count, and label displaying the count:
     private TextField input;
-    private Label output = new Label("Enter any English word");
-    private int targetWordLength;
+    private Label inst = new Label("Enter any English word");
+    private Label guessedWord = new Label("_ _ _");
+    private Label correctWord = new Label("wow");
+    private Label wrongGuesses = new Label("asd");
+    private Button myButton;
         
     public void start(Stage stage) throws Exception
     {
         input = new TextField();
         input.setText("");
-        
-        // Create a Button or any control item
-        Button myButton = new Button("Submit");
+
+        myButton = new Button("Submit");
 
         // Create a new grid pane
         GridPane pane = new GridPane();
@@ -43,10 +45,13 @@ public class HangmanFX extends Application {
         // Add the button and label into the pane
         pane.add(input, 0, 0);
         pane.add(myButton, 0, 1);
-        pane.add(output, 1, 0);
+        pane.add(inst, 1, 0);
+        pane.add(correctWord, 0, 2);
+        pane.add(guessedWord, 0, 3);
+        pane.add(wrongGuesses, 1, 3);
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(pane, 300,100);
+        Scene scene = new Scene(pane, 300,150);
         stage.setTitle("Hangman Game");
         stage.setScene(scene);
 
@@ -55,7 +60,12 @@ public class HangmanFX extends Application {
     }
 
     private void main(ActionEvent event){
+    	myButton.setVisible(false);
+    	input.setVisible(false);
+    	inst.setVisible(false);
     	Game hangmanGame = new Game();
-    	hangmanGame.main(input.getText());
+    	String inputWord = input.getText();
+    	correctWord.setText(inputWord);
+    	hangmanGame.main(inputWord);
     }
 }

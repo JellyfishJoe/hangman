@@ -5,6 +5,7 @@ public class Game{
 
 	private String targetWord;
 	private int targetWordLength;
+	private String guess;
 
 	public void main(String word){
 
@@ -30,8 +31,10 @@ public class Game{
 		//System.out.println(words);
 
 		words = guesser.FilterLength(words, targetWordLength);
-
 		System.out.println(words);
+
+		guess = guesser.GuessByAlphabet(alphabet);
+		System.out.println(guess);
 
 		//guesser.MostCommonLetterGuess(targetWord, targetWordLength, alphabet);
 

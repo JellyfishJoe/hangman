@@ -5,6 +5,8 @@ public class Guesser{
 
 	static List<String> passingWords = new ArrayList<String>();
 
+	public static int guesses;
+
 	public static void MostCommonLetterGuess(String targetWord, List<String> wordList){
 		
 	}
@@ -28,6 +30,12 @@ public class Guesser{
 			}
 		}
 		return passingWords;
+	}
+
+	public String GuessByAlphabet(List<String> alphabet){
+		String guess = alphabet.get(guesses);
+		guesses = guesses++;
+		return guess;
 	}
 }
 
