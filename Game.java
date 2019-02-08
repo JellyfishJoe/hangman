@@ -14,6 +14,7 @@ public class Game{
 		List<String> alphabet = new ArrayList<String>();
 		Reader reader = new Reader();
 		Guesser guesser = new Guesser();
+		Checker checker = new Checker();
 
 		words = reader.main("C:\\Users\\etone\\Desktop\\javaProjects\\hangman\\res\\words.txt");
 		disallowedChars = reader.main("C:\\Users\\etone\\Desktop\\javaProjects\\hangman\\res\\disallowedChars.txt");
@@ -34,7 +35,11 @@ public class Game{
 		System.out.println(words);
 
 		guess = guesser.GuessByAlphabet(alphabet);
-		System.out.println(guess);
+		if(checker.CheckGuess(guess, targetWord).length() == 0){
+			System.out.println("correct guess: " + guess);
+		} else {
+			System.out.println("wrong guess");
+		}
 
 		//guesser.MostCommonLetterGuess(targetWord, targetWordLength, alphabet);
 
